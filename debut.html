@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>C'est le titre</title>
+    <style type="text/css">
+        .rouge {
+            background-color: red;
+        }
+        .vert {
+            background-color: green;
+        }
+    </style>
+    <script language="JavaScript">
+
+        var compte = 0;
+        function clique(element)
+        {
+            var options = ["rouge", "vert"];
+            if(element.estCliqued == undefined)
+            {
+                element.estCliqued = true;
+                element.className += options[compte % 2];
+                compte++;
+            }
+        }
+
+        function reset()
+        {
+            var table = document.getElementById("maTable");
+            for (var i = 0, row; row = table.rows[i]; i++) {
+
+                for (var j = 0, col; col = row.cells[j]; j++) {
+                    row.cells[j].estCliqued = undefined;
+                    row.cells[j].className = "";
+                }
+            }
+        }
+    </script>
+</head>
+    <body>
+        <table style="width: 100%; height: 500px" id="maTable">
+            <tr>
+                <td onclick="clique(this)" style="border: double"></td>
+                <td onclick="clique(this)" style="border: double"></td>
+                <td onclick="clique(this)" style="border: double"></td>
+            </tr>
+            <tr>
+                <td onclick="clique(this)" style="border: double"></td>
+                <td onclick="clique(this)" style="border: double"></td>
+                <td onclick="clique(this)" style="border: double"></td>
+            </tr>
+            <tr>
+                <td onclick="clique(this)" style="border: double"></td>
+                <td onclick="clique(this)" style="border: double"></td>
+                <td onclick="clique(this)" style="border: double"></td>
+            </tr>
+            <tr>
+                <td colspan="3" onclick="reset(this)" style="text-align: center; border: double; width: 33%;">Reset</td>
+            </tr>
+        </table>
+    </body>
+</html>

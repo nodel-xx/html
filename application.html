@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <header>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <title>Application</title>
+
+        <script language="JavaScript">
+            var actuel = 0;
+            var max = 5;
+
+
+            function clique(arg)
+            {
+                var div = document.getElementById("contenu");
+                var request = new XMLHttpRequest();
+                request.onreadystatechange = function() {
+                    if ( this.readyState == 4 && this.status == 200 )
+                    {
+                        div.innerHTML = this.responseText;
+                    }
+                };
+
+
+                if(arg == "previous")
+                {
+                    actuel--;
+                    if(actuel < 1)
+                    {
+                        actuel = max;
+                    }
+                }
+
+                if(arg == "next")
+                {
+                    actuel++;
+                    if(actuel > max)
+                    {
+                        actuel = 1;
+                    }
+                }
+
+                request.open("GET", actuel + ".html", true);
+                request.send();
+                return;
+            }
+        </script>
+    </header>
+    <body>
+        <div id="contenu">Début</div>
+        <input id="previous" value="Précédent" type="button" onclick="clique('previous')">
+        <input id="next" value="Suivant" type="button" onclick="clique('next')">
+    </body>
+</html>
